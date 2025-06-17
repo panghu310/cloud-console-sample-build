@@ -1,21 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: "apps/v1"
+kind: "Deployment"
 metadata:
-  name: cloud-build-test
+  name: "deployment-1"
+  namespace: "default"
   labels:
-    app: cloud-build-test
+    app: "deployment-1"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: cloud-build-test
+      app: "deployment-1"
   template:
     metadata:
       labels:
-        app: cloud-build-test
+        app: "deployment-1"
     spec:
       containers:
-      - name: cloud-build-test
-        image: gcr.io/$PROJECT_ID/helloworld-image:1.14.2
-        ports:
-        - containerPort: 80
+      - name: "nginx-1"
+        image: "gcr.io/$PROJECT_ID/helloworld-image:latest"
