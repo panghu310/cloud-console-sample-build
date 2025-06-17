@@ -11,9 +11,6 @@ steps:
   - --location=asia-east1
   - --cluster=autopilot-cluster-1
 
-images:
-- 'gcr.io/$PROJECT_ID/helloworld-image:2.0'
-
 tags: ['gcp-cloud-build-sample-build']
 
 options:
