@@ -4,7 +4,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=/yaml
+  - --filename=yaml
   - --image=gcr.io/$PROJECT_ID/helloworld-image
   - --location=asia-east1
   - --cluster=autopilot-cluster-1
