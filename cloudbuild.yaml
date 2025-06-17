@@ -6,7 +6,7 @@ steps:
     echo "Commit message: $COMMIT_MSG"
     if [[ "$COMMIT_MSG" != *"[build]"* ]]; then
       echo "No [build] tag in commit message. Skipping build."
-      exit 0
+      exit -1
     fi
 - name: 'docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloworld-image', '.' ]
