@@ -15,5 +15,6 @@ steps:
     else 
       echo "No [build] or [deploy] detected in git message, skip build."
     fi
+
 options:
   logging: CLOUD_LOGGING_ONLY
