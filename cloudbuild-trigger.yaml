@@ -4,9 +4,9 @@ steps:
   args: 
   - '-c'
   - |
-    export COMMIT_MSG=$(git log -1 --pretty=%B)
-    echo "Commit message: $COMMIT_MSG"
-    if [[ "$COMMIT_MSG" == *"[build]"* ]]; then
+    COMMIT_MSG=$(git log -1 --pretty=%B)
+    echo "Commit message: $$COMMIT_MSG"
+    if [[ "$$COMMIT_MSG" == *"[build]"* ]]; then
       echo "Triggering main build..."
       gcloud builds submit --config=cloudbuild.yaml
     else 
