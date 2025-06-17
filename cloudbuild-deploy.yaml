@@ -10,7 +10,6 @@ steps:
   - --image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
   - --location=asia-east1
   - --cluster=autopilot-cluster-1
-  - --server-dry-run
 
 tags: ['gcp-cloud-build-sample-build']
 
