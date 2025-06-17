@@ -6,12 +6,13 @@ steps:
   - |
     COMMIT_MSG=$(git log -1 --pretty=%B)
     echo "Commit message: $$COMMIT_MSG"
+    TIMESTAMP=$(date +"%Y%m%d%H%M%S")
     if [[ "$$COMMIT_MSG" == *"[build]"* ]]; then
       echo "Triggering build..."
-      gcloud builds submit --config=cloudbuild-build.yaml
+      gcloud builds submit --config=cloudbuild-build.yaml --substitutions=_SHORT_SHA="$SHORT_SHA.$$TIMESTAMP"
     elif [[ "$$COMMIT_MSG" == *"[deploy]"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml
+      gcloud builds submit --config=cloudbuild-deploy.yaml --substitutions=_SHORT_SHA="$SHORT_SHA.$$TIMESTAMP"
     else 
       echo "No [build] or [deploy] detected in git message, skip build."
     fi

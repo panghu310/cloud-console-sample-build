@@ -1,15 +1,16 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloworld-image:2.0', '.' ]
+  args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'push', 'gcr.io/$PROJECT_ID/helloworld-image:2.0']
+  args: [ 'push', 'gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=yaml
-  - --image=gcr.io/$PROJECT_ID/helloworld-image:2.0
+  - --image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
   - --location=asia-east1
   - --cluster=autopilot-cluster-1
+  - --server-dry-run
 
 tags: ['gcp-cloud-build-sample-build']
 

@@ -1,20 +1,20 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "deployment-1"
+  name: "helloworld"
   namespace: "default"
   labels:
-    app: "deployment-1"
+    app: "helloworld"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "deployment-1"
+      app: "helloworld"
   template:
     metadata:
       labels:
-        app: "deployment-1"
+        app: "helloworld"
     spec:
       containers:
-      - name: "nginx-1"
-        image: "nginx:1.14.2"
+      - name: "helloworld"
+        image: "gcr.io/natural-night-463201-t0/helloworld-image:2.0"
