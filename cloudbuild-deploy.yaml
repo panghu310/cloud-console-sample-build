@@ -10,7 +10,7 @@ steps:
   - --cluster=autopilot-cluster-1
 
 images:
-- 'gcr.io/$PROJECT_ID/helloworld-image:1.0'
+- 'gcr.io/$PROJECT_ID/helloworld-image'
 tags: ['gcp-cloud-build-sample-build']
 
 options:
