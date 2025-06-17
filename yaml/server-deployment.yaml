@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: "nginx-1"
-        image: "gcr.io/$PROJECT_ID/helloworld-image:$SHORT_SHA"
+        image: "gcr.io/$PROJECT_ID/helloworld-image:1.0"
