@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-build-test
+  labels:
+    app: cloud-build-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloud-build-test
+  template:
+    metadata:
+      labels:
+        app: cloud-build-test
+    spec:
+      containers:
+      - name: cloud-build-test
+        image: gcr.io/$PROJECT_ID/helloworld-image:1.14.2
+        ports:
+        - containerPort: 80

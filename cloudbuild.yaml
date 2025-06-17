@@ -1,10 +1,19 @@
 steps:
-- name: 'docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloworld-image', '.' ]
-
-images:
-- 'gcr.io/$PROJECT_ID/helloworld-image'
-
-tags: ['gcp-cloud-build-sample-build']
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args: 
+  - '-c'
+  - |
+    COMMIT_MSG=$(git log -1 --pretty=%B)
+    echo "Commit message: $$COMMIT_MSG"
+    if [[ "$$COMMIT_MSG" == *"[build]"* ]]; then
+      echo "Triggering build..."
+      gcloud builds submit --config=cloudbuild-build.yaml
+    elif [[ "$$COMMIT_MSG" == *"[deploy]"* ]]; then
+      echo "Triggering deploy..."
+      gcloud builds submit --config=cloudbuild-deploy.yaml
+    else 
+      echo "No [build] or [deploy] detected in git message, skip build."
+    fi
 options:
   logging: CLOUD_LOGGING_ONLY
