@@ -1,6 +1,9 @@
 steps:
-- name: 'bash'
-  script: |
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args: 
+  - '-c'
+  - |
     #!/usr/bin/env bash
 
     COMMIT_MSG=$(git log -1 --pretty=%B)
