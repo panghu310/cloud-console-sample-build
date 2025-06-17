@@ -15,4 +15,5 @@ images:
 - 'gcr.io/$PROJECT_ID/helloworld-image'
 
 tags: ['gcp-cloud-build-sample-build']
-logging: CLOUD_LOGGING_ONLY
+options:
+  logging: CLOUD_LOGGING_ONLY
