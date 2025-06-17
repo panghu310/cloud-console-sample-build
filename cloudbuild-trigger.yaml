@@ -1,0 +1,16 @@
+steps:
+- name: 'bash'
+  script: |
+    #!/usr/bin/env bash
+
+    COMMIT_MSG=$(git log -1 --pretty=%B)
+    echo "Commit message: $COMMIT_MSG"
+
+    if [[ "$COMMIT_MSG" == *"[build]"* ]]; then
+      echo "Triggering main build..."
+      gcloud builds submit --config=cloudbuild.yaml
+    else 
+      echo "Skipping build."
+    fi
+options:
+  logging: CLOUD_LOGGING_ONLY
