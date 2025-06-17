@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: "nginx-1"
-        image: "gcr.io/natural-night-463201-t0/helloworld-image:1.0"
+        image: "gcr.io/natural-night-463201-t0/helloworld-image:2.0"
