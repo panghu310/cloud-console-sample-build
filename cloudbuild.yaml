@@ -11,10 +11,10 @@ steps:
     TIMESTAMP=$(date +"%Y%m%d%H%M%S")
     if [[ "$$COMMIT_MSG" == *"[build]"* || "$$MANUALLY_CALL" == *"build"* ]]; then
       echo "Triggering build..."
-      gcloud builds submit --config=cloudbuild-build.yaml  --substitutions=_SHORT_SHA="auto_$SHORT_SHA.$$TIMESTAMP"
+      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=_SHORT_SHA="auto_$SHORT_SHA.$$TIMESTAMP"
     elif [[ "$$COMMIT_MSG" == *"[deploy]"* || "$$MANUALLY_CALL" == *"deploy"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml  --substitutions=_SHORT_SHA="auto_$SHORT_SHA.$$TIMESTAMP"
+      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=_SHORT_SHA="auto_$SHORT_SHA.$$TIMESTAMP"
     else 
         echo "No [build] or [deploy] detected in git message, skip build."
     fi
