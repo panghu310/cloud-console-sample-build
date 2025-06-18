@@ -12,7 +12,7 @@ steps:
       gcloud builds submit --config=cloudbuild-build.yaml --substitutions=_SHORT_SHA="$SHORT_SHA.$$TIMESTAMP"
     elif [[ "$$COMMIT_MSG" == *"[deploy]"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml"
+      gcloud builds submit --config=cloudbuild-deploy.yaml
     else 
       echo "No [build] or [deploy] detected in git message, skip build."
     fi
