@@ -10,26 +10,18 @@ steps:
 #   - --image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
 #   - --location=asia-east1
 #   - --cluster=autopilot-cluster-1
-- name: gcr.io/cloud-builders/gcloud
+- name: "gcr.io/cloud-builders/gke-deploy"
   entrypoint: bash
   args:
-    - -c
-    - |
-      cluster=autopilot-cluster-1
-      local=asia-east1
-      project_id=natural-night-463201-t0
-      yaml_dir=yaml/release
-      yaml_file=yaml/release/server-deployment.yaml
-      image_name=helloworld1
-      image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
+  - -c
+  - |
+    cluster=autopilot-cluster-1
+    local=asia-east1
+    project_id=natural-night-463201-t0
+    image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
 
-      gcloud container clusters get-credentials $$cluster  \
-       --zone $$local \
-       --project $$project_id
-      kubectl set image -f $$yaml_file $$image_name=$$image \
-          --local --dry-run=client -o yaml > ci-tmp.yaml 
-      mv ci-tmp.yaml $$yaml_file
-      kubectl apply --filename=$$yaml_dir
+    gcloud container clusters get-credentials $$cluster --zone $$local --project $$project_id
+    gke-deploy run --filename=yaml/release --image=$$image --location=$$local --cluster=$$cluster
 
 tags: ['gcp-cloud-build-sample-build']
 
