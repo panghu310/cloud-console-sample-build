@@ -15,14 +15,21 @@ steps:
   args:
     - -c
     - |
-      gcloud container clusters get-credentials autopilot-cluster-1  \
-       --zone asia-east1 \
-       --project natural-night-463201-t0
+      cluster=autopilot-cluster-1
+      local=asia-east1
+      project_id=natural-night-463201-t0
+      yaml_dir=yaml/release
+      yaml_file=yaml/release/server-deployment.yaml
+      image_name=helloworld1
+      image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
 
-      kubectl set image -f yaml/release/server-deployment.yaml helloworld1=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA} \
-          --local --dry-run=client -o yaml > ci-tmp.yaml && mv ci-tmp.yaml yaml/release/server-deployment.yaml
-
-      kubectl apply --filename=yaml/release
+      gcloud container clusters get-credentials $$cluster  \
+       --zone $$local \
+       --project $$project_id
+      kubectl set image -f $$yaml_file $$image_name=$$image \
+          --local --dry-run=client -o yaml > ci-tmp.yaml 
+      mv ci-tmp.yaml $$yaml_file
+      kubectl apply --filename=$$yaml_dir
 
 tags: ['gcp-cloud-build-sample-build']
 
