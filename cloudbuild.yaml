@@ -9,19 +9,19 @@ steps:
     MANUALLY_CALL=$(echo "$_MANUALLY_CALL" | cut -d',' -f1)
     echo "manually call: $$MANUALLY_CALL"
     TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-    SUBS=$(printf '_NT="true",_BRANCH_NAME="%s",_COMMIT_SHA="%s",_REPO_NAME="%s",_SHORT_SHA="auto_%s.%s"' "$BRANCH_NAME" "$COMMIT_SHA" "$REPO_NAME" "$SHORT_SHA" "$$TIMESTAMP")
+    SUBS=_BRANCH_NAME="$BRANCH_NAME",_COMMIT_SHA="$COMMIT_SHA",_REPO_NAME="$REPO_NAME",_SHORT_SHA="auto_$SHORT_SHA.$$TIMESTAMP"
     if [[ "$$MANUALLY_CALL" == *"build"* ]]; then
       echo "Triggering build..."
-      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=$$SUBS
+      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=_NT="true",$$SUBS
     elif [[ "$$MANUALLY_CALL" == *"deploy"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=$$SUBS
+      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=_NT="true",$$SUBS
     elif [[ "$$COMMIT_MSG" == *"[build]"* ]]; then
       echo "Triggering build..."
-      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=$$SUBS
+      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=_NT="true",$$SUBS
     elif [[ "$$COMMIT_MSG" == *"[deploy]"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=$$SUBS
+      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=_NT="true",$$SUBS
     else 
         echo "No [build] or [deploy] detected in git message, skip build."
     fi
