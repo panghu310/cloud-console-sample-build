@@ -18,10 +18,10 @@ steps:
       gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=$$SUBS
     elif [[ "$$COMMIT_MSG" == *"[build]"* ]]; then
       echo "Triggering build..."
-      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=$$SUBS"
+      gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=$$SUBS
     elif [[ "$$COMMIT_MSG" == *"[deploy]"* ]]; then
       echo "Triggering deploy..."
-      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=$$SUBS"
+      gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=$$SUBS
     else 
         echo "No [build] or [deploy] detected in git message, skip build."
     fi
