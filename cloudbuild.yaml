@@ -9,7 +9,7 @@ steps:
     MANUALLY_CALL=$(echo "$_MANUALLY_CALL" | cut -d',' -f1)
     echo "manually call: $$MANUALLY_CALL"
     TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-    SUBS=$(printf '_BRANCH_NAME="%s",_COMMIT_SHA="%s",_REPO_NAME="%s",_SHORT_SHA="auto_%s.%s"' "$BRANCH_NAME" "$COMMIT_SHA" "$REPO_NAME" "$SHORT_SHA" "$TIMESTAMP")
+    SUBS=$(printf '_BRANCH_NAME="%s",_COMMIT_SHA="%s",_REPO_NAME="%s",_SHORT_SHA="auto_%s.%s"' "$BRANCH_NAME" "$COMMIT_SHA" "$REPO_NAME" "$SHORT_SHA" "$$TIMESTAMP")
     gcloud builds submit --config=cloudbuild-build.yaml --region=us-central1 --substitutions=_NT="true",$$SUBS"
     # if [[ "$$MANUALLY_CALL" == *"build"* ]]; then
     #   echo "Triggering build..."
