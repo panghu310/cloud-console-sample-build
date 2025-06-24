@@ -29,5 +29,3 @@ options:
   logging: CLOUD_LOGGING_ONLY
 substitutions:
   _MANUALLY_CALL: "none,build,deploy"
-
-  gcloud builds submit --config=cloudbuild-deploy.yaml --region=us-central1 --substitutions=_NT=true,_BRANCH_NAME=main,_COMMIT_SHA=4b9f2c2f636b240d221ead2e8363408564a66645,_REPO_NAME=cloud-console-sample-build,_SHORT_SHA=auto_4b9f2c2.20250624115154
