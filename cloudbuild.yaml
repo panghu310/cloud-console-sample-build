@@ -27,5 +27,6 @@ steps:
     fi
 options:
   logging: CLOUD_LOGGING_ONLY
+  pubsubTopic: projects/phonic-chariot-464007-n8/topics/cloud-builds-nt
 substitutions:
   _MANUALLY_CALL: "none,build,deploy"

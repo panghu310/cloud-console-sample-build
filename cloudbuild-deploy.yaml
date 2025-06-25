@@ -24,4 +24,3 @@ tags: ['gcp-cloud-build-sample-build']
 options:
   logging: CLOUD_LOGGING_ONLY
   substitutionOption: 'ALLOW_LOOSE'
-  pubsubTopic: projects/phonic-chariot-464007-n8/topics/cloud-builds-nt
