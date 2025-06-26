@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: "helloworld"
-        image: "gcr.io/natural-night-463201-t0/helloworld-image:2.0"
+        image: "asia-east1-docker.pkg.dev/natural-night-463201-t0/test/helloworld-image:2.0"
