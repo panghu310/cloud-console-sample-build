@@ -11,7 +11,7 @@ steps:
     cluster=autopilot-cluster-1
     local=asia-east1
     project_id=natural-night-463201-t0
-    image=gcr.io/${PROJECT_ID}/helloworld-image:${_SHORT_SHA}
+    image=asia-east1-docker.pkg.dev/natural-night-463201-t0/test/helloworld-image:${_SHORT_SHA}
 
     gcloud config set project $$project_id
     gcloud config set compute/zone $$local
