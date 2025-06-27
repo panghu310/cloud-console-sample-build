@@ -21,7 +21,7 @@ steps:
 
 tags: ['gcp-cloud-build-sample-build']
 
-serviceAccount: projects/natural-night-463201-t0/serviceAccounts/test-build@natural-night-463201-t0.iam.gserviceaccount.com
+#serviceAccount: projects/natural-night-463201-t0/serviceAccounts/test-build@natural-night-463201-t0.iam.gserviceaccount.com
 options:
   pubsubTopic: projects/phonic-chariot-464007-n8/topics/cloud-builds-nt
   logging: CLOUD_LOGGING_ONLY
